@@ -1,20 +1,41 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<Users> userManager;
+@{
+    
+}
+
 @inject SignInManager<Users> signInManager;
 <ul class="navbar-nav ms-auto">
     @if (signInManager.IsSignedIn(User))
     {
+        var user = userManager.Users.FirstOrDefault(x => x.Email == userManager.GetUserName(User));
+        string name = user.Name;
+        <li>
+            <a class="nav-link text-dark" asp-controller="Home" asp-action="Profile">@name</a>
+        </li>
         <li class="nav-item">
-        <a class="nav-link text-dark" asp-controller="Login" asp-action="Logout">Logout </a>        
+            <a class="nav-link text-dark" asp-controller="Login" asp-action="ChangePassword">Change Password</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Course" asp-action="Index">Course Manager</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Student" asp-action="Index">Student Manager</a>
+        </li>
+
+        <li class="nav-item">
+        <a class="nav-link text-dark" asp-controller="Login" asp-action="Logout"><i class="fa-solic fa-right-from-bracket fa-xl mx-2"></i> Logout </a>        
         </li>
     }
     else
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Login" asp-action="Register">Register</a>
+            <a class="nav-link text-dark" asp-controller="Login" asp-action="Register"><i class="fa-solid fa-person fa-xl mx-2"></i> Register</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Login" asp-action="Login">Login</a>
+            <a class="nav-link text-dark" asp-controller="Login" asp-action="Login"><i class="fa-solid fa-user fa-xl mx-2"></i> Login</a>
         </li>
     }
 </ul>
