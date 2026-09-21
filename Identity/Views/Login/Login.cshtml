@@ -1,0 +1,42 @@
+﻿@model Identity.ViewModel.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+<div class="row">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-6 bg-body-tertiary">
+            <h1 class="p-3 text-center">Login</h1>
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger">
+
+                </div>
+                <div class="mb-2">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="mb-2">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-control"/>
+                    <span asp-validation-for="Password" class="text-danger "></span>
+                </div>
+                <div class="float-end">
+                    <a asp-controller="Login" asp-action="VerifyEmail" class="text-decoration-none">
+                        Forgot Password?
+                    </a>
+                </div>
+                <div class="form-check mb-2">
+                    <input  asp-for="Rememberme" class="form-check-input"/>
+                    <label asp-for="Rememberme"></label>
+                </div>
+                <input type="submit" class="btn btn-success mb-2" value="Login" />
+                    <p class="text-center mb-3">
+                        Don't have an account? <a asp-controller="Login" asp-action="Register" class="text-decoration-none">Register</a>
+                    </p>
+                    <div class="text-center">
+                        <a asp-controller="Home" asp-action="Index" class="text-decoration-none">Back</a>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
